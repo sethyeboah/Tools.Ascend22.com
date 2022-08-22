@@ -2981,23 +2981,23 @@ var AttributeAction;
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "default": () => (/* binding */ getCryptoData)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var cheerio__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! cheerio */ "./node_modules/cheerio/lib/esm/index.js");
-// function getCryptoData() {
+// export default function getCryptoData() {
 //     var cryptoData = "This Will Be The Crypto Data To Be Printed In Webpage";
 //     return cryptoData;
 // }
+// getCryptoData;
 
-// // console.log(getCryptoData());
-// export default getCryptoData
+////////////////////////////////////////////////////////////
 
+// import axios from 'axios';
+// import cheerio from 'cheerio';
 
-
-
-// async function getCryptoData() {
+// export default async function getCryptoData() {
 //     try {
 //       const siteUrl = 'https://coinmarketcap.com/'
   
@@ -3013,14 +3013,8 @@ __webpack_require__.r(__webpack_exports__);
 //         if (parentIdx <= 9){
 //           $(parentElem).children().each((childIdx, childElem) => {
   
-//             //console.log($(childElem).text());
-//             //document.write("Fetching...");
-//             //document.write(processedData);
-
-//             var processedData = $(childElem).text();
-//             //document.write(processedData);
-  
-//             return processedData
+//             console.log($(childElem).text());
+//             document.write($(childElem).text());
   
 //           })
 //         }
@@ -3034,60 +3028,51 @@ __webpack_require__.r(__webpack_exports__);
 //   }
 
 
+//////////////////////////////////////////////////////////////////////////
 
-function getCryptoData() {
+
+
+
+async function getCryptoData() {
     try {
-        const { webPageData } = axios__WEBPACK_IMPORTED_MODULE_0___default().get('https://coinmarketcap.com/');
-        console.log($(webPageData).text());
+        //Get webpage data
+        const { data } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('https://coinmarketcap.com/');
+
+        //Print webpage data
+        // console.log(data);
+
+        const $ = cheerio__WEBPACK_IMPORTED_MODULE_1__["default"].load(data);
+        const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div:nth-child(1) > div.h7vnx2-1.bFzXgL > table > tbody > tr';
+
+      $(elementSelector).each((parentIdx, parentElem) => {
+        if (parentIdx <= 9){
+          $(parentElem).children().each((childIdx, childElem) => {
+  
+            console.log($(childElem).text());
+            document.write($(childElem).text());
+  
+          })
+        }
+  
+      })
 
 
-    //     const { webPageData } = axios.get('https://coinmarketcap.com/').then(response => {
-    //     console.log(response.data);
-    // });
-
-    // console.log($(webPageData).text());
-    // document.write($(webPageData).text());
-
-    return webPageData
+        
+    
 
 
-  
-    //   const { data } = await axios({
-    //     method: "GET",
-    //     url: siteUrl,
-    //   })
-  
-    //   const $ = cheerio.load(data)
-    //   const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div:nth-child(1) > div.h7vnx2-1.bFzXgL > table > tbody > tr'
-  
-    //   $(elementSelector).each((parentIdx, parentElem) => {
-    //     if (parentIdx <= 9){
-    //       $(parentElem).children().each((childIdx, childElem) => {
-  
-    //         //console.log($(childElem).text());
-    //         //document.write("Fetching...");
-    //         //document.write(processedData);
 
-    //         var processedData = $(childElem).text();
-    //         //document.write(processedData);
-  
-    //         return processedData
-  
-    //       })
-    //     }
-  
-    //   })
-      
     } catch (error) {
       console.log(error);
     }
   
-  }
-  
-  
-  /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getCryptoData);
-//   console.log(getCryptoData());
-//   document.write(getCryptoData());
+}
+
+getCryptoData;
+
+// //   console.log(getCryptoData());
+// //   document.write(getCryptoData());
+
 
 /***/ }),
 
@@ -21264,18 +21249,24 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _getCryptoData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getCryptoData */ "./src/scripts/getCryptoData.js");
 // import getCryptoData from "./getCryptoData";
-
 // console.log(getCryptoData());
+// document.write(getCryptoData());
+
+////////////////////////////////////////////////////////////////////////////
+
 
 
 
 document.write("Processed Data: <br>");
+(0,_getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"])();
 
-var processedData = (0,_getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"])();
+///////////////////////////////////////////////////////////////////////////
 
-// console.log(getCryptoData());
+// var processedData = getCryptoData();
 
-document.write(processedData);
+// //console.log(getCryptoData());
+
+// document.write(processedData);
 })();
 
 /******/ })()
