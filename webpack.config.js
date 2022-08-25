@@ -9,5 +9,8 @@ module.exports = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].js',
     },
+    experiments: {
+        topLevelAwait: true,
+    },
     devtool: 'source-map',
 }

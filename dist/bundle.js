@@ -2976,12 +2976,13 @@ var AttributeAction;
 /*!**************************************!*\
   !*** ./src/scripts/getCryptoData.js ***!
   \**************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ getCryptoData)
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -2990,7 +2991,6 @@ __webpack_require__.r(__webpack_exports__);
 //     var cryptoData = "This Will Be The Crypto Data To Be Printed In Webpage";
 //     return cryptoData;
 // }
-// getCryptoData;
 
 ////////////////////////////////////////////////////////////
 
@@ -3028,51 +3028,124 @@ __webpack_require__.r(__webpack_exports__);
 //   }
 
 
-//////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
+
+// import axios from 'axios';
+// import cheerio from 'cheerio';
+
+// let webPageData = await axios.get('https://coinmarketcap.com/');
+
+// let cryptoData = webPageData.data;
+
+// export default cryptoData;
+
+/////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-async function getCryptoData() {
-    try {
-        //Get webpage data
-        const { data } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('https://coinmarketcap.com/');
-
-        //Print webpage data
-        // console.log(data);
-
-        const $ = cheerio__WEBPACK_IMPORTED_MODULE_1__["default"].load(data);
-        const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div:nth-child(1) > div.h7vnx2-1.bFzXgL > table > tbody > tr';
-
-      $(elementSelector).each((parentIdx, parentElem) => {
-        if (parentIdx <= 9){
-          $(parentElem).children().each((childIdx, childElem) => {
-  
-            console.log($(childElem).text());
-            document.write($(childElem).text());
-  
-          })
-        }
-  
-      })
+let webPageData = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('https://coinmarketcap.com/');
+let cryptoData = [];
 
 
+const $ = cheerio__WEBPACK_IMPORTED_MODULE_1__["default"].load(webPageData.data)
+const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div:nth-child(1) > div.h7vnx2-1.bFzXgL > table > tbody > tr';
+
+    // $(elementSelector).each((parentIdx, parentElem) => {
+    //     if (parentIdx <= 1) {
+    //         $(parentElem).children().each((childIdx, childElem) => {
         
+    //             cryptoData[parentIdx] = $(childElem).text();
+    //             console.log(cryptoData[parentIdx]);
+    //             document.write(cryptoData[parentIdx]);
+        
+    //         })
+    //     }
+        
+    // })
+
+    $(elementSelector).each((i, parentElem) => {
+        if (i <= 1) {
+            $(parentElem).children().each((childIdx, childElem) => {
+                
+                // cryptoData[i] = $(childElem).text();
+                // console.log(cryptoData[i]);
+                // document.write(cryptoData[i]);
+
+                ///////////////////////////////////////////
+
+                cryptoData.push($(childElem).text());
+
+                //////////////////////////////////////////////
+        
+            })
+        }
+    });
+
+    // console.log(cryptoData);
+    // document.write(cryptoData);
+
+
+    // for (let i = 0; i < 2; i++) {
+    //     console.log(cryptoData);
+    //     document.write(cryptoData);
+    // }
     
 
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cryptoData);
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } }, 1);
+
+/***/ }),
+
+/***/ "./src/scripts/index.js":
+/*!******************************!*\
+  !*** ./src/scripts/index.js ***!
+  \******************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _getCryptoData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getCryptoData */ "./src/scripts/getCryptoData.js");
+var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([_getCryptoData__WEBPACK_IMPORTED_MODULE_0__]);
+_getCryptoData__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
+// import getCryptoData from "./getCryptoData";
+
+// document.write("Processed Data: <br>");
+// console.log(getCryptoData());
+// document.write(getCryptoData());
+
+//////////////////////////////////////////////////////////////////////////
+
+// import cryptoData from "./getCryptoData";
+
+// document.write("Processed Data: <br>");
+// console.log(cryptoData);
+// document.write(cryptoData);
+
+////////////////////////////////////////////////////////////////////////////
+
+// import cryptoData from "./getCryptoData";
+
+// document.write("Processed Data: <br>");
+// console.log(cryptoData);
+// document.write(cryptoData);
+
+//////////////////////////////////////////
 
 
-    } catch (error) {
-      console.log(error);
-    }
-  
-}
 
-getCryptoData;
+document.write("Processed Data: <br>");
+document.write(_getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
-// //   console.log(getCryptoData());
-// //   document.write(getCryptoData());
+// for (let i = 0; i <= 1; i++){
+//     console.log(cryptoData);
+//     document.write(cryptoData);
 
+// }
+__webpack_async_result__();
+} catch(e) { __webpack_async_result__(e); } });
 
 /***/ }),
 
@@ -21198,6 +21271,75 @@ const defaultTreeAdapter = {
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/async module */
+/******/ 	(() => {
+/******/ 		var webpackQueues = typeof Symbol === "function" ? Symbol("webpack queues") : "__webpack_queues__";
+/******/ 		var webpackExports = typeof Symbol === "function" ? Symbol("webpack exports") : "__webpack_exports__";
+/******/ 		var webpackError = typeof Symbol === "function" ? Symbol("webpack error") : "__webpack_error__";
+/******/ 		var resolveQueue = (queue) => {
+/******/ 			if(queue && !queue.d) {
+/******/ 				queue.d = 1;
+/******/ 				queue.forEach((fn) => (fn.r--));
+/******/ 				queue.forEach((fn) => (fn.r-- ? fn.r++ : fn()));
+/******/ 			}
+/******/ 		}
+/******/ 		var wrapDeps = (deps) => (deps.map((dep) => {
+/******/ 			if(dep !== null && typeof dep === "object") {
+/******/ 				if(dep[webpackQueues]) return dep;
+/******/ 				if(dep.then) {
+/******/ 					var queue = [];
+/******/ 					queue.d = 0;
+/******/ 					dep.then((r) => {
+/******/ 						obj[webpackExports] = r;
+/******/ 						resolveQueue(queue);
+/******/ 					}, (e) => {
+/******/ 						obj[webpackError] = e;
+/******/ 						resolveQueue(queue);
+/******/ 					});
+/******/ 					var obj = {};
+/******/ 					obj[webpackQueues] = (fn) => (fn(queue));
+/******/ 					return obj;
+/******/ 				}
+/******/ 			}
+/******/ 			var ret = {};
+/******/ 			ret[webpackQueues] = x => {};
+/******/ 			ret[webpackExports] = dep;
+/******/ 			return ret;
+/******/ 		}));
+/******/ 		__webpack_require__.a = (module, body, hasAwait) => {
+/******/ 			var queue;
+/******/ 			hasAwait && ((queue = []).d = 1);
+/******/ 			var depQueues = new Set();
+/******/ 			var exports = module.exports;
+/******/ 			var currentDeps;
+/******/ 			var outerResolve;
+/******/ 			var reject;
+/******/ 			var promise = new Promise((resolve, rej) => {
+/******/ 				reject = rej;
+/******/ 				outerResolve = resolve;
+/******/ 			});
+/******/ 			promise[webpackExports] = exports;
+/******/ 			promise[webpackQueues] = (fn) => (queue && fn(queue), depQueues.forEach(fn), promise["catch"](x => {}));
+/******/ 			module.exports = promise;
+/******/ 			body((deps) => {
+/******/ 				currentDeps = wrapDeps(deps);
+/******/ 				var fn;
+/******/ 				var getResult = () => (currentDeps.map((d) => {
+/******/ 					if(d[webpackError]) throw d[webpackError];
+/******/ 					return d[webpackExports];
+/******/ 				}))
+/******/ 				var promise = new Promise((resolve) => {
+/******/ 					fn = () => (resolve(getResult));
+/******/ 					fn.r = 0;
+/******/ 					var fnQueue = (q) => (q !== queue && !depQueues.has(q) && (depQueues.add(q), q && !q.d && (fn.r++, q.push(fn))));
+/******/ 					currentDeps.map((dep) => (dep[webpackQueues](fnQueue)));
+/******/ 				});
+/******/ 				return fn.r ? promise : getResult();
+/******/ 			}, (err) => ((err ? reject(promise[webpackError] = err) : outerResolve(exports)), resolveQueue(queue)));
+/******/ 			queue && (queue.d = 0);
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -21239,36 +21381,12 @@ const defaultTreeAdapter = {
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
-/*!******************************!*\
-  !*** ./src/scripts/index.js ***!
-  \******************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _getCryptoData__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getCryptoData */ "./src/scripts/getCryptoData.js");
-// import getCryptoData from "./getCryptoData";
-// console.log(getCryptoData());
-// document.write(getCryptoData());
-
-////////////////////////////////////////////////////////////////////////////
-
-
-
-
-document.write("Processed Data: <br>");
-(0,_getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"])();
-
-///////////////////////////////////////////////////////////////////////////
-
-// var processedData = getCryptoData();
-
-// //console.log(getCryptoData());
-
-// document.write(processedData);
-})();
-
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	// This entry module used 'module' so it can't be inlined
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/scripts/index.js");
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=bundle.js.map
