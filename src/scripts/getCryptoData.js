@@ -87,7 +87,7 @@ const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comD
 
                 cryptoData.push($(childElem).text());
 
-                //////////////////////////////////////////////
+                ///////////////////////////////////////////////
         
             })
         }
