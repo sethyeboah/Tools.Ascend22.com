@@ -3030,17 +3030,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /////////////////////////////////////////////////////////////////////////////////
 
-// import axios from 'axios';
-// import cheerio from 'cheerio';
-
-// let webPageData = await axios.get('https://coinmarketcap.com/');
-
-// let cryptoData = webPageData.data;
-
-// export default cryptoData;
-
-/////////////////////////////////////////////////////////////////////////////////
-
 
 
 
@@ -3051,48 +3040,20 @@ let cryptoData = [];
 const $ = cheerio__WEBPACK_IMPORTED_MODULE_1__["default"].load(webPageData.data)
 const elementSelector = '#__next > div > div.main-content > div.sc-57oli2-0.comDeo.cmc-body-wrapper > div > div:nth-child(1) > div.h7vnx2-1.bFzXgL > table > tbody > tr';
 
-    // $(elementSelector).each((parentIdx, parentElem) => {
-    //     if (parentIdx <= 1) {
-    //         $(parentElem).children().each((childIdx, childElem) => {
-        
-    //             cryptoData[parentIdx] = $(childElem).text();
-    //             console.log(cryptoData[parentIdx]);
-    //             document.write(cryptoData[parentIdx]);
-        
-    //         })
-    //     }
-        
-    // })
-
     $(elementSelector).each((i, parentElem) => {
         if (i <= 1) {
             $(parentElem).children().each((childIdx, childElem) => {
-                
-                // cryptoData[i] = $(childElem).text();
-                // console.log(cryptoData[i]);
-                // document.write(cryptoData[i]);
-
-                ///////////////////////////////////////////
 
                 cryptoData.push($(childElem).text());
 
-                ///////////////////////////////////////////////
-        
             })
         }
     });
 
-    // console.log(cryptoData);
-    // document.write(cryptoData);
-
-
-    // for (let i = 0; i < 2; i++) {
-    //     console.log(cryptoData);
-    //     document.write(cryptoData);
-    // }
-    
-
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (cryptoData);
+
+/////////////////////////////////////////////////////////////////////////////////
+
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } }, 1);
 
@@ -3132,18 +3093,37 @@ _getCryptoData__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.th
 // console.log(cryptoData);
 // document.write(cryptoData);
 
-//////////////////////////////////////////
+////////////////////////////////////////
+//// USING WEBPACK
+////////////////////////////////////////
 
 
 
 document.write("Processed Data: <br>");
 document.write(_getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
-// for (let i = 0; i <= 1; i++){
-//     console.log(cryptoData);
-//     document.write(cryptoData);
+var dataFunction = {
+    theData : _getCryptoData__WEBPACK_IMPORTED_MODULE_0__["default"],
+};
 
-// }
+// /////////////////////////////////////////////////////////
+// // NO WEBPACK
+// /////////////////////////////////////////////////////////
+
+// const cryptoData = require('./getCryptoData.js');
+
+// document.write("Processed Data: <br>");
+// document.write(cryptoData);
+
+// var dataFunction = {
+//     theData : cryptoData,
+// };
+
+// // for (let i = 0; i <= 1; i++){
+// //     console.log(cryptoData);
+// //     document.write(cryptoData);
+
+// // }
 __webpack_async_result__();
 } catch(e) { __webpack_async_result__(e); } });
 
